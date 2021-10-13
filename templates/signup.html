@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+{% for m in messages %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>Holy guacamole!</strong> {{m}}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{% endfor %}
+</div>
+<center> 
+<h1> Signup </h1>
+</center>
+<form class="my-5 container" method="POST" action="{% url 'signup' %}">
+{% csrf_token %}
+  <div class="form-group">
+    <label for="e">Username</label>
+    <input type="text" class="form-control" id="e" placeholder="Enter username" name="su">
+  </div>
+  <div class="form-group">
+    <label for="p">Password</label>
+    <input type="password" class="form-control" id="p" placeholder="Password" name="sp">
+  </div>
+  
+   <div class="form-group">
+    <label for="sp1">Confirm Password</label>
+    <input type="password" class="form-control" id="sp1" placeholder="Password" name="spc">
+  </div>
+  
+  <div class="custom-control custom-switch">
+  <input type="checkbox" class="custom-control-input" id="customSwitch1">
+  <label class="custom-control-label" for="customSwitch1">Agree with our terms</label>
+</div>
+ <br>
+  <button type="submit" class="btn btn-info w-100">Signup</button>
+</form>
+<center>
+Already a user? <a href="{% url 'login' %}">Login Here </a>
+<br>
+<br>
+
+{% endblock %}

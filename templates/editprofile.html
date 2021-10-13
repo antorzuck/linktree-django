@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block style %}
+.circular {
+
+margin: auto;
+width: 200px;
+height: 200px;
+-webkit-border-radius: 50%;
+-moz-border-radius: 50%;
+border-radius: 50%;
+ overflow:hidden;
+
+} 
+	
+ .circular img{
+
+   width:100%;
+}
+{% endblock %}
+
+{% block body %}
+<br>
+<br>
+<br>
+
+{% if info.img %}
+	
+<center>
+		<div class="circular">
+  <img src="{{info.img.url|default_if_none:'#' }}" />
+</div>
+		</center> 
+		{% endif %}
+
+	
+ <form class="my-5 container" action="{% url 'edit' %}" method="POST" enctype="multipart/form-data">
+ {% csrf_token %}
+ <input class="form-control-file" type="file" name="profilepic" value="" />
+ <br>
+ <input class="form-control" type="text" name="biodata" value="{{info.bio}}" placeholder="Enter a short bio" />
+ <br>
+ 
+ <button class="btn btn-info w-100" type="submit">Submit</button>
+   
+ </form>
+<center>
+
+{% endblock %}

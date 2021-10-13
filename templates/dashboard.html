@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% block style %}
+
+a{
+   font-family: 'Baloo Thambi 2', cursive;
+ }
+h2{
+	font-family: 'Baloo Thambi 2', cursive;
+}
+.links a{
+  text-decoration: none;
+  color:black;
+}
+
+.links{
+  background: lightblue;
+  padding:10px 100px 10px 100px;
+  border-radius:20px;
+}
+
+
+{% endblock %}
+
+
+
+
+{% block body %}
+<br>
+<br>
+<div class="container my-5">
+
+<center>
+		<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Welcome, {{request.user}}
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+  
+    <a class="dropdown-item" href="{% url 'edit' %}">Edit Profile</a>
+    
+    <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+   
+  </div>
+</div>
+
+</center>
+{% for l in links %}
+<center>
+  <div class="my-2 links">
+    <a class="py-2" href="">{{l.title}}<i class="fa fa-edit"></i></a>
+    <br />
+   
+    <a  href="#">{{l.url}}<i class="fa fa-edit"></i></a>
+    <br>
+    
+    <a class="" href="{% url 'delete' l.id %}"> Delete <i class="fa fa-trash"></i> </a>
+  </div>
+  </center>
+  {% endfor %}
+  
+  
+  <button type="button" class="border-rounded my-5 ml-3 fixed-bottom btn btn-info" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="fa fa-plus"></i> Links</button>
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+    <br>
+    <center> <h2> Add New Links </h2> </center>
+      <form class="container" method="POST" action="{% url 'add' %}">
+      {% csrf_token %}
+      <input class="form-control" type="text" placeholder="Title" name="ttl" />
+      <br>
+      <input class="form-control" type="text" placeholder="Link" name="lnk" />
+      <br>
+      <button class="btn btn-info w-100" type="submit">Add</button>
+      <br>
+      <br>
+      <br>
+      </form>
+    </div>
+  </div>
+</div>
+  
+  
+  
+  
+  
+  </div>
+  <br>
+  <br>
+  <br>
+    <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+    <br>
+  <br>
+    <br>
+  <center>
+
+
+{% endblock %}
